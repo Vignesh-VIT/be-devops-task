@@ -1,0 +1,11 @@
+name: be-devops-task
+description: Python program to deploy EC2 Instance
+runtime:
+  name: python
+  options:
+    toolchain: pip
+    virtualenv: venv
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: aws-python
