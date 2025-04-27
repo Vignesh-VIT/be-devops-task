@@ -1,5 +1,5 @@
 # AWS EC2 Instance Deployment and K3s Installation Using Pulumi (Python)
-I have explaned the below steps to deploy the EC2 instance and installed k3s on EC2 instance using Pulumi with Python
+I have explained the below steps to deploy the EC2 instance and installed k3s on EC2 instance using Pulumi with Python
 
 ## Prerequisites
 - AWS CLI configured with appropriate credentials
@@ -8,15 +8,12 @@ I have explaned the below steps to deploy the EC2 instance and installed k3s on 
 - A valid EC2 Key Pair already created in AWS (e.g., mykey and mykey.pem)
 
 ## Pulumi Stack Explanation
-- VPC: Used AWS default VPC to provision EC2 in isolated network
-- Subnet: Selects the first subnet dynamically from the default VPC
 - Security Group: Custom SG allowing SSH, HTTP, HTTPS, and NodePort range access (Enable some standard ports, incase need to expose application using NodePort)
 - EC2 Instance: Ubuntu-based EC2 (t2.micro) launched with the above configurations
 - Remote Command: Utilized remote command to install k3s using a simple curl and sh command
 
 ## Code Workdlow
 - Import Pulumi libraries (pulumi, pulumi_aws, pulumi_command)
-- Fetch default VPC and Subnets dynamically
 - Create Security Group with required ingress and egress rules
 - Launch EC2 Instance with:
   - Ubuntu AMI (ami-0e35ddab05955cf57)

@@ -4,17 +4,10 @@ import pulumi
 import pulumi_aws as aws
 import pulumi_command as command 
 
-default_vpc = aws.ec2.get_vpc(default=True)
-
-default_subnets = aws.ec2.get_subnets(filters=[
-    {"name": "vpc-id", "values": [default_vpc.id]},
-])
-
-first_subnet_id = default_subnets.ids[0]
 
 custom_sg = aws.ec2.SecurityGroup("be-custom-sg",
     description="Allow HTTP, HTTPS, SSH and custom TCP ports",
-    vpc_id=default_vpc.id,
+    # vpc_id=default_vpc.id,
     ingress=[
         aws.ec2.SecurityGroupIngressArgs(
             protocol="tcp",
@@ -64,7 +57,6 @@ ec2_instance = aws.ec2.Instance('k3s-setup',
                                 ami="ami-0e35ddab05955cf57",
                                 instance_type="t2.micro",
                                 key_name="mykey",
-                                subnet_id=first_subnet_id,
                                 vpc_security_group_ids=[custom_sg.id],
                                 tags={"Name": "k3s_instance", "Owner": "vignesh", "Task": "be-devops-task"}
                             )
@@ -81,6 +73,4 @@ install_k3s = command.remote.Command("install-k3s",
 
 pulumi.export("instance_id", ec2_instance.id)
 pulumi.export("public_ip", ec2_instance.public_ip)
-pulumi.export("default_vpc_id", default_vpc.id)
-pulumi.export("default_subnet_id", first_subnet_id)
 pulumi.export("default_security_group_id", custom_sg.id)
