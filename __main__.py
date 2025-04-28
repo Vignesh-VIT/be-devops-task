@@ -29,7 +29,7 @@ custom_sg = aws.ec2.SecurityGroup("be-custom-sg",
             cidr_blocks=["0.0.0.0/0"],
             description="Allow HTTPS",
         ),
-        # Allow custom TCP range (NodePort). Incase, if we want to access the flask application outside from k3s Node.
+        # Allow custom TCP range (NodePort Range). Incase, if we want to access the flask application outside from k3s Node.
         aws.ec2.SecurityGroupIngressArgs(
             protocol="tcp",
             from_port=30000,
