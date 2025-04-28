@@ -7,7 +7,6 @@ import pulumi_command as command
 
 custom_sg = aws.ec2.SecurityGroup("be-custom-sg",
     description="Allow HTTP, HTTPS, SSH and custom TCP ports",
-    # vpc_id=default_vpc.id,
     ingress=[
         aws.ec2.SecurityGroupIngressArgs(
             protocol="tcp",
