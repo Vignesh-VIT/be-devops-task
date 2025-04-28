@@ -12,7 +12,7 @@ I have explained the below steps to deploy the EC2 instance and installed k3s on
 - EC2 Instance: Ubuntu-based EC2 (t2.micro) launched with the above configurations
 - Remote Command: Utilized remote command to install k3s using a simple curl and sh command
 
-## Code Workdlow
+## Code Workflow
 - Import Pulumi libraries (pulumi, pulumi_aws, pulumi_command)
 - Create Security Group with required ingress and egress rules
 - Launch EC2 Instance with:
